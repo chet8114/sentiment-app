@@ -4,7 +4,7 @@ from datetime import datetime
 import pandas as pd
 
 # Set up the model
-classifier = pipeline("sentiment-analysis")
+classifier = pipeline("sentiment-analysis", device=-1)
 
 # Streamlit UI
 st.set_page_config(page_title="Sentiment Classifier", layout="centered")
