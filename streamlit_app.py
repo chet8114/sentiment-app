@@ -1,10 +1,17 @@
 import streamlit as st
-from transformers import pipeline
 from datetime import datetime
 import pandas as pd
 
-# Set up the model
-classifier = pipeline("sentiment-analysis", device=-1)
+from transformers import pipeline
+
+classifier = pipeline(
+    "sentiment-analysis",
+    model="distilbert-base-uncased-finetuned-sst-2-english",
+    device=-1,  # Force CPU
+    revision="main",  # Avoids meta tensor bugs in some versions
+    torch_dtype="float32"  # Forces safe tensor loading
+)
+
 
 # Streamlit UI
 st.set_page_config(page_title="Sentiment Classifier", layout="centered")
